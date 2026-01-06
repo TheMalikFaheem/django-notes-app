@@ -1,0 +1,39 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <form method="post" class="bg-white rounded-xl shadow-lg border border-gray-200 overflow-hidden">
+        {% csrf_token %}
+        
+        <div class="bg-gray-50 px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <a href="{% url 'note_list' %}" class="text-gray-500 hover:text-gray-700">← Back</a>
+            <div class="flex gap-3">
+                {% if note %}
+                    <button type="submit" formaction="{% url 'note_delete' note.pk %}" class="text-red-500 hover:text-red-700 px-4 py-2 text-sm">
+                        Delete
+                    </button>
+                {% endif %}
+                <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded-lg hover:bg-indigo-700 shadow-sm font-medium">
+                    Save Document
+                </button>
+            </div>
+        </div>
+
+        <div class="p-8">
+            <input 
+                type="text" 
+                name="title" 
+                placeholder="Document Title" 
+                value="{{ note.title|default:'' }}" 
+                class="w-full text-4xl font-bold text-gray-800 placeholder-gray-300 border-none focus:ring-0 mb-6 px-0"
+                required
+            >
+            <textarea 
+                name="content" 
+                placeholder="Start typing your thoughts here..." 
+                class="w-full h-96 text-lg text-gray-600 placeholder-gray-300 border-none focus:ring-0 resize-none px-0 leading-relaxed"
+            >{{ note.content|default:'' }}</textarea>
+        </div>
+    </form>
+</div>
+{% endblock %}

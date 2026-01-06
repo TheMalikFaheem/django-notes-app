@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: notes-app
+    ports:
+      - "8000:8000"
+    volumes:
+      # This allows you to see code changes without rebuilding (optional for dev)
+      - .:/app
+    # Ensure the container doesn't exit immediately if errors occur
+    restart: always
