@@ -2,12 +2,11 @@ version: '3.8'
 
 services:
   web:
-    build: .
-    container_name: notes-app
+    image: notes-app-image:latest # Local image name
+    container_name: notes-container
     ports:
       - "8000:8000"
     volumes:
-      # This allows you to see code changes without rebuilding (optional for dev)
-      - .:/app
+      - /home/ubuntu/notes_data:/app/db_data
     # Ensure the container doesn't exit immediately if errors occur
     restart: always
