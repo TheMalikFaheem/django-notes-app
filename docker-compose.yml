@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web:
-    image: notes-app-image:latest # Local image name
+    image: notes-app-image:latest
     container_name: notes-container
     ports:
       - "8000:8000"
